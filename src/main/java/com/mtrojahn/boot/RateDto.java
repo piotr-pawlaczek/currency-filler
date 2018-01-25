@@ -2,7 +2,7 @@ package com.mtrojahn.boot;
 
 import java.math.BigDecimal;
 
-public class Rate {
+public class RateDto {
 	private String no;
 	private String effectiveDate;
 	private BigDecimal mid;

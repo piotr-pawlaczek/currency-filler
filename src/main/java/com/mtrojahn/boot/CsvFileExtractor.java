@@ -2,6 +2,7 @@ package com.mtrojahn.boot;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,14 @@ public class CsvFileExtractor {
 			}
 		}
 		return lines;
+	}
+	
+	public static List<LocalDate> extractDatesFromCsvEntries(List<String[]> entries, int columnNumber) {
+		List<LocalDate> dates = new ArrayList<>();
+		for(String[] line : entries) {
+			dates.add(LocalDate.parse(line[columnNumber]));
+		}
+		return dates;
 	}
 
 }

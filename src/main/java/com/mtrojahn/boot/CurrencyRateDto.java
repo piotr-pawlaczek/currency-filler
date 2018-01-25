@@ -1,10 +1,10 @@
 package com.mtrojahn.boot;
 
-public class CurrencyRate {
+public class CurrencyRateDto {
 	private String table;
 	private String currency;
 	private String code;
-	private Rate[] rates;
+	private RateDto[] rates;
 
 	public String getTable() {
 		return table;
@@ -30,11 +30,11 @@ public class CurrencyRate {
 		this.code = code;
 	}
 
-	public Rate[] getRates() {
+	public RateDto[] getRates() {
 		return rates;
 	}
 
-	public void setRates(Rate[] rates) {
+	public void setRates(RateDto[] rates) {
 		this.rates = rates;
 	}
 
