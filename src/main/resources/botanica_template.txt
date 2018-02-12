@@ -1,0 +1,1 @@
+Date:Product:Customer:Price:Earnings:Taxes:License:*Prowizja

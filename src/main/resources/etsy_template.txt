@@ -1,0 +1,1 @@
+Payment ID:Buyer Username:Buyer Name:Order ID:Gross Amount:Fees:Net Amount:Posted Gross:Posted Fees:Posted Net:Adjusted Gross:Adjusted Fees:Adjusted Net:Currency:Listing Amount:Listing Currency:Exchange Rate:VAT Amount:Gift Card Applied?:Status:Funds Available:Order Date:Buyer:Order Type:Payment Type:Refund Amount

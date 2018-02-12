@@ -2,19 +2,18 @@ package com.mtrojahn.boot;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.opencsv.CSVReader;
 
-public class CsvFileExtractor {
+public class CsvLineExtractor {
 
-	public static List<String[]> extractFromFile(String pathToFile) {
+	public static List<String[]> extractFromFile(String pathToFile, char separator) {
 		CSVReader reader = null;
 		List<String[]> lines = new ArrayList<>();
 		try {
-			reader = new CSVReader(new FileReader(pathToFile));
+			reader = new CSVReader(new FileReader(pathToFile), separator);
 			String[] line;
 			while ((line = reader.readNext()) != null) {
 				lines.add(line);
@@ -32,14 +31,6 @@ public class CsvFileExtractor {
 			}
 		}
 		return lines;
-	}
-	
-	public static List<LocalDate> extractDatesFromCsvEntries(List<String[]> entries, int columnNumber) {
-		List<LocalDate> dates = new ArrayList<>();
-		for(String[] line : entries) {
-			dates.add(LocalDate.parse(line[columnNumber]));
-		}
-		return dates;
 	}
 
 }

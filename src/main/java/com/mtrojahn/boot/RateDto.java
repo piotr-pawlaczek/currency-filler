@@ -2,7 +2,7 @@ package com.mtrojahn.boot;
 
 import java.math.BigDecimal;
 
-public class RateDto {
+public class RateDto implements Comparable<RateDto>{
 	private String no;
 	private String effectiveDate;
 	private BigDecimal mid;
@@ -29,5 +29,10 @@ public class RateDto {
 
 	public void setMid(BigDecimal mid) {
 		this.mid = mid;
+	}
+
+	@Override
+	public int compareTo(RateDto o) {
+		return this.effectiveDate.compareTo(o.effectiveDate);
 	}
 }
