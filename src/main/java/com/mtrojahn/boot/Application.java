@@ -29,17 +29,18 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class Application {
 
+	private static final String NBP_API_URL = "http://api.nbp.pl/api/exchangerates/rates/{table}/{code}/{startDate}/{endDate}";
+
 	@Autowired
 	private RestTemplate restTemplate;
 
 	@Autowired
 	private CsvExtractorFactory csvExtractorFactory;
-	
+
 	@Autowired
 	private TemplateFactory templateFactory;
 
 	public static void main(String[] args) {
-
 		ConfigurableApplicationContext context = new SpringApplicationBuilder().sources(Application.class)
 				.bannerMode(Banner.Mode.OFF).run(args);
 
@@ -51,23 +52,23 @@ public class Application {
 		System.out.println("Hello World!");
 		System.out.println("dddd");
 
-		List<File> files = new ArrayList<>();
-		collectCsvFiles(new File("C:/Users/pawlacze/Downloads/3/"), files);
+		List<File> files = collectCsvFiles(new File("C:/Users/pawlacze/Downloads/3/"));
 
 		generateOutput(files);
 	}
 
-	public void collectCsvFiles(File directory, List<File> files) {
+	private List<File> collectCsvFiles(File directory) {
+		List<File> files = new ArrayList<>();
 		for (File file : directory.listFiles()) {
 			if (file.isFile()) {
-				if (file.getName().endsWith(".csv")) {
+				if (file.getName().endsWith(".csv")) {//only csv files
 					files.add(file);
 				}
 			} else {
-				collectCsvFiles(file, files);
+				files.addAll(collectCsvFiles(file));
 			}
 		}
-
+		return files;
 	}
 
 	private void generateOutput(List<File> files) {
@@ -85,7 +86,8 @@ public class Application {
 
 			ExcelSheetEditor editor = new ExcelSheetEditor();
 
-			try (FileInputStream templateFile = new FileInputStream(new File(templateFactory.getTemplate(file.getName())))) {
+			try (FileInputStream templateFile = new FileInputStream(
+					new File(templateFactory.getTemplate(file.getName())))) {
 				XSSFWorkbook workbook = new XSSFWorkbook(templateFile);
 
 				editor.fill(workbook, entries, currencyRateMap);
@@ -101,17 +103,13 @@ public class Application {
 			}
 		}
 	}
-	
-
 
 	private CurrencyRateDto fetchCurrencyRate(String table, String currencyCode, LocalDate startDate,
 			LocalDate endDate) {
-		String urlPattern = "http://api.nbp.pl/api/exchangerates/rates/{table}/{code}/{startDate}/{endDate}";
-
 		String startDateString = startDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
 		String endDateString = endDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
 
-		return restTemplate.getForObject(urlPattern, CurrencyRateDto.class, table, currencyCode, startDateString,
+		return restTemplate.getForObject(NBP_API_URL, CurrencyRateDto.class, table, currencyCode, startDateString,
 				endDateString);
 	}
 

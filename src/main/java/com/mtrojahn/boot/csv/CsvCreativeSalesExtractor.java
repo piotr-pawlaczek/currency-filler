@@ -28,7 +28,7 @@ public class CsvCreativeSalesExtractor extends CsvExtractor {
 		List<RowEntry> entries = new ArrayList<>();
 
 		Map<String, Integer> template = parseTemplate(
-				getClass().getClassLoader().getResource("botanica_template.txt").getFile());
+				getClass().getClassLoader().getResource("creative_market_sales_template.txt").getFile());
 		List<String[]> csvEntries = CsvLineExtractor.extractFromFile(csvFilePath, ';');
 
 		for (int i = 1; i < csvEntries.size(); i++) {
