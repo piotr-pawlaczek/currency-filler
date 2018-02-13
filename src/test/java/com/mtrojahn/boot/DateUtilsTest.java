@@ -23,7 +23,7 @@ public class DateUtilsTest {
 
 		// when
 		Pair<LocalDate, LocalDate> result = DateUtils
-				.retrieveEarliestDate(Arrays.asList(date1, date2, date3, date4, date5, date6));
+				.retrieveEarliestAndLatestDate(Arrays.asList(date1, date2, date3, date4, date5, date6));
 
 		// then
 		assertEquals(date1, result.getLeft());
@@ -38,7 +38,7 @@ public class DateUtilsTest {
 		LocalDate date3 = LocalDate.of(2017, Month.AUGUST, 18);
 
 		// when
-		Pair<LocalDate, LocalDate> result = DateUtils.retrieveEarliestDate(Arrays.asList(date1, date2, date3));
+		Pair<LocalDate, LocalDate> result = DateUtils.retrieveEarliestAndLatestDate(Arrays.asList(date1, date2, date3));
 
 		// then
 		assertEquals(date1, result.getLeft());
@@ -51,7 +51,7 @@ public class DateUtilsTest {
 		LocalDate date1 = LocalDate.of(2017, Month.AUGUST, 18);
 
 		// when
-		Pair<LocalDate, LocalDate> result = DateUtils.retrieveEarliestDate(Arrays.asList(date1));
+		Pair<LocalDate, LocalDate> result = DateUtils.retrieveEarliestAndLatestDate(Arrays.asList(date1));
 
 		// then
 		assertEquals(date1, result.getLeft());

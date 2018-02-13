@@ -40,6 +40,9 @@ public class Application {
 	@Autowired
 	private TemplateFactory templateFactory;
 
+	@Autowired
+	private ExcelSheetEditor excelSheetEditor;
+
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = new SpringApplicationBuilder().sources(Application.class)
 				.bannerMode(Banner.Mode.OFF).run(args);
@@ -61,7 +64,7 @@ public class Application {
 		List<File> files = new ArrayList<>();
 		for (File file : directory.listFiles()) {
 			if (file.isFile()) {
-				if (file.getName().endsWith(".csv")) {//only csv files
+				if (file.getName().endsWith(".csv")) {// only csv files
 					files.add(file);
 				}
 			} else {
@@ -77,20 +80,18 @@ public class Application {
 					.extractDataFromCsv(file.getAbsolutePath());
 
 			List<LocalDate> dates = entries.stream().map(e -> e.getDate()).collect(Collectors.toList());
-			Pair<LocalDate, LocalDate> datesRange = DateUtils.retrieveEarliestDate(dates);
+			Pair<LocalDate, LocalDate> datesRange = DateUtils.retrieveEarliestAndLatestDate(dates);
 
 			CurrencyRateDto currencyRates = fetchCurrencyRate("a", "USD", datesRange.getLeft().minusDays(5),
 					datesRange.getRight());
 
 			Map<LocalDate, RateDto> currencyRateMap = createCurrencyRateMap(currencyRates.getRates());
 
-			ExcelSheetEditor editor = new ExcelSheetEditor();
-
 			try (FileInputStream templateFile = new FileInputStream(
 					new File(templateFactory.getTemplate(file.getName())))) {
 				XSSFWorkbook workbook = new XSSFWorkbook(templateFile);
 
-				editor.fill(workbook, entries, currencyRateMap);
+				excelSheetEditor.fill(workbook, entries, currencyRateMap);
 
 				FileOutputStream outFile = new FileOutputStream(
 						new File(file.getParent() + "/output/" + file.getName().replace("csv", "xlsx")));

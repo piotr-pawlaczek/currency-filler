@@ -31,7 +31,7 @@ public class CsvCreativeSalesExtractor extends CsvExtractor {
 				getClass().getClassLoader().getResource("creative_market_sales_template.txt").getFile());
 		List<String[]> csvEntries = CsvLineExtractor.extractFromFile(csvFilePath, ';');
 
-		for (int i = 1; i < csvEntries.size(); i++) {
+		for (int i = 1; i < csvEntries.size(); i++) {//skip header row
 			LocalDate date = LocalDate.parse(csvEntries.get(i)[template.get(DATE)],
 					DateTimeFormatter.ofPattern(DATE_FORMAT));
 			BigDecimal price = new BigDecimal(csvEntries.get(i)[template.get(PRICE)]);
@@ -43,9 +43,9 @@ public class CsvCreativeSalesExtractor extends CsvExtractor {
 			values.put(0, price);
 			values.put(1, provision);
 			values.put(2, tax);
-			RowEntry rowEntry2 = new RowEntry(date, values);
+			RowEntry rowEntry = new RowEntry(date, values);
 
-			entries.add(rowEntry2);
+			entries.add(rowEntry);
 		}
 		return entries;
 	}

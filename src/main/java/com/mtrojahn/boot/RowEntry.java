@@ -2,6 +2,7 @@ package com.mtrojahn.boot;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Map;
 
 public class RowEntry {
@@ -27,7 +28,7 @@ public class RowEntry {
 	}
 
 	public void setValues(Map<Integer, BigDecimal> values) {
-		this.values = values;
+		this.values =  Collections.unmodifiableMap(values);
 	}
 
 }

@@ -14,10 +14,8 @@ import com.mtrojahn.boot.RowEntry;
 
 @Component
 public abstract class CsvExtractor {
-	
-	public abstract List<RowEntry> extractDataFromCsv(String csvFilePath);
 
-	
+	public abstract List<RowEntry> extractDataFromCsv(String csvFilePath);
 
 	protected Map<String, Integer> parseTemplate(String templatePath) {
 		String templateLine;
