@@ -131,7 +131,7 @@ public class Application {
 		factory.setProxy(proxy);
 
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.setRequestFactory(factory);
+//		restTemplate.setRequestFactory(factory);
 		return restTemplate;
 	}
 

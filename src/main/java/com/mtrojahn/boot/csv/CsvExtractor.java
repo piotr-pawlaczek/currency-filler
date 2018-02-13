@@ -21,8 +21,8 @@ public abstract class CsvExtractor {
 		String templateLine;
 		Map<String, Integer> columnsMap = new HashMap<>();
 
-		try (BufferedReader brTest = new BufferedReader(new FileReader(templatePath))) {
-			templateLine = brTest.readLine();
+		try (BufferedReader br = new BufferedReader(new FileReader(templatePath))) {
+			templateLine = br.readLine();
 			String[] columnNames = templateLine.split(":");
 			for (int i = 0; i < columnNames.length; i++) {
 				columnsMap.put(columnNames[i], i);
