@@ -1,4 +1,4 @@
-package com.mtrojahn.boot;
+package pp.currencyextr;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

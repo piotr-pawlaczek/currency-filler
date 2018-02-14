@@ -1,11 +1,11 @@
-package com.mtrojahn.boot;
+package pp.currencyextr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mtrojahn.boot.csv.CsvCreativeSalesExtractor;
-import com.mtrojahn.boot.csv.CsvEtsyExtractor;
-import com.mtrojahn.boot.csv.CsvExtractor;
+import pp.currencyextr.csv.CsvCreativeSalesExtractor;
+import pp.currencyextr.csv.CsvEtsyExtractor;
+import pp.currencyextr.csv.CsvExtractor;
 
 @Component
 public class CsvExtractorFactory {

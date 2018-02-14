@@ -1,4 +1,4 @@
-package com.mtrojahn.boot;
+package pp.currencyextr;
 
 import java.io.File;
 import java.io.FileInputStream;

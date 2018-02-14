@@ -1,4 +1,4 @@
-package com.mtrojahn.boot;
+package pp.currencyextr;
 
 import java.time.LocalDate;
 import java.util.List;

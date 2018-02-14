@@ -1,4 +1,4 @@
-package com.mtrojahn.boot;
+package pp.currencyextr;
 
 public class CurrencyRateDto {
 	private String table;

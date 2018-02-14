@@ -1,4 +1,4 @@
-package com.mtrojahn.boot.csv;
+package pp.currencyextr.csv;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.mtrojahn.boot.RowEntry;
+import pp.currencyextr.RowEntry;
 
 @Component
 public abstract class CsvExtractor {

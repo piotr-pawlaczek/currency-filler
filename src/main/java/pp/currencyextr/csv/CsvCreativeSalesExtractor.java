@@ -1,4 +1,4 @@
-package com.mtrojahn.boot.csv;
+package pp.currencyextr.csv;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,8 +10,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.mtrojahn.boot.CsvLineExtractor;
-import com.mtrojahn.boot.RowEntry;
+import pp.currencyextr.CsvLineExtractor;
+import pp.currencyextr.RowEntry;
 
 @Component
 public class CsvCreativeSalesExtractor extends CsvExtractor {

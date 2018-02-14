@@ -1,4 +1,4 @@
-package com.mtrojahn.boot;
+package pp.currencyextr;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Test;
 
 public class DateUtilsTest {
-
 	@Test
 	public void shouldReturnMaxAndMinDateTupleWhenGivenListOfFewDates() {
 		// given
@@ -57,5 +56,4 @@ public class DateUtilsTest {
 		assertEquals(date1, result.getLeft());
 		assertEquals(date1, result.getRight());
 	}
-
 }
