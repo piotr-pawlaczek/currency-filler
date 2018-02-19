@@ -79,6 +79,7 @@ public class ExcelSheetEditor {
 		cell.setCellValue(entry.getDate().format(DateTimeFormatter.ISO_DATE));
 
 		cell = sheet.getRow(rowIndex).getCell(TRANSACTION_VALUE_COLUMN);
+		cell.setCellStyle(createNumericCellStyle(workbook));
 		cell.setCellValue(entry.getValues().get(i).doubleValue());
 
 		cell = sheet.getRow(rowIndex).getCell(CURRENCY_RATE_FROM_PREVIOUS_DAY_COLUMN);
@@ -111,6 +112,17 @@ public class ExcelSheetEditor {
 		style.setDataFormat(8); // https://poi.apache.org/apidocs/org/apache/poi/ss/usermodel/BuiltinFormats.html
 		return style;
 	}
+	
+	private XSSFCellStyle createNumericCellStyle(XSSFWorkbook workbook) {
+		XSSFCellStyle style = workbook.createCellStyle();
+		style.setBorderTop(BorderStyle.THIN);
+		style.setAlignment(HorizontalAlignment.CENTER);
+		
+		style.setDataFormat(workbook.getCreationHelper().createDataFormat().getFormat("0.00"));
+		return style;
+	}
+	
+	
 
 	private RateDto getLastWorkingDayRate(LocalDate date, Map<LocalDate, RateDto> currencyRateMap) {
 		RateDto dto = null;

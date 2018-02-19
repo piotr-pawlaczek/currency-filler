@@ -55,7 +55,7 @@ public class Application {
 		System.out.println("Hello World!");
 		System.out.println("dddd");
 
-		List<File> files = collectCsvFiles(new File("C:/Users/pawlacze/Downloads/3/"));
+		List<File> files = collectCsvFiles(new File("C:/Users/pawlacze/Downloads/basia/"));
 
 		generateOutput(files);
 	}
@@ -78,6 +78,10 @@ public class Application {
 		for (File file : files) {
 			List<RowEntry> entries = csvExtractorFactory.getCsvExtractor(file.getName())
 					.extractDataFromCsv(file.getAbsolutePath());
+			
+			if(entries.isEmpty()) {// pusty plik
+				continue;
+			}
 
 			List<LocalDate> dates = entries.stream().map(e -> e.getDate()).collect(Collectors.toList());
 			Pair<LocalDate, LocalDate> datesRange = DateUtils.retrieveEarliestAndLatestDate(dates);
