@@ -1,5 +1,11 @@
 package pp.currencyextr;
 
+/**
+ * DTO object representing json fetched from NBP currency service
+ * 
+ * @author pawlacze
+ *
+ */
 public class CurrencyRateDto {
 	private String table;
 	private String currency;

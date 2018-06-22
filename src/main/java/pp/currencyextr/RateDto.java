@@ -2,7 +2,13 @@ package pp.currencyextr;
 
 import java.math.BigDecimal;
 
-public class RateDto implements Comparable<RateDto>{
+/**
+ * DTO object representing json fetched from NBP currency service
+ * 
+ * @author pawlacze
+ *
+ */
+public class RateDto implements Comparable<RateDto> {
 	private String no;
 	private String effectiveDate;
 	private BigDecimal mid;

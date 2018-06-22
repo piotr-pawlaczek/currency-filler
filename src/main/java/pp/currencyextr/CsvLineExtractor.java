@@ -10,10 +10,8 @@ import com.opencsv.CSVReader;
 public class CsvLineExtractor {
 
 	public static List<String[]> extractFromFile(String pathToFile, char separator) {
-		CSVReader reader = null;
 		List<String[]> lines = new ArrayList<>();
-		try {
-			reader = new CSVReader(new FileReader(pathToFile), separator);
+		try (CSVReader reader = new CSVReader(new FileReader(pathToFile), separator)) {
 			String[] line;
 			while ((line = reader.readNext()) != null) {
 				lines.add(line);
@@ -21,14 +19,6 @@ public class CsvLineExtractor {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					System.out.println("Unable to close CSV reader. Stacktrace: " + e.getStackTrace());
-				}
-			}
 		}
 		return lines;
 	}

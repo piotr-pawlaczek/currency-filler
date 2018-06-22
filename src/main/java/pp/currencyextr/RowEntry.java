@@ -5,6 +5,13 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * Represents row entry for given date. Map stores values for dates where
+ * integer key points to the sheet where value is stored
+ * 
+ * @author pawlacze
+ *
+ */
 public class RowEntry {
 
 	public RowEntry(LocalDate date, Map<Integer, BigDecimal> values) {
@@ -28,7 +35,7 @@ public class RowEntry {
 	}
 
 	public void setValues(Map<Integer, BigDecimal> values) {
-		this.values =  Collections.unmodifiableMap(values);
+		this.values = Collections.unmodifiableMap(values);
 	}
 
 }
