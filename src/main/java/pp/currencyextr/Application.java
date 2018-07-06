@@ -55,7 +55,7 @@ public class Application {
 		System.out.println("Hello World!");
 		System.out.println("dddd");
 
-		List<File> files = collectCsvFiles(new File("C:/Users/pawlacze/Downloads/basia/"));
+		List<File> files = collectCsvFiles(new File("C:/Users/pawlacze/Downloads/basia3/"));
 
 		generateOutput(files);
 	}
@@ -97,6 +97,8 @@ public class Application {
 
 				excelSheetEditor.fill(workbook, entries, currencyRateMap);
 
+				createOutputDirectoryIfNotExist(file);
+				
 				FileOutputStream outFile = new FileOutputStream(
 						new File(file.getParent() + "/output/" + file.getName().replace("csv", "xlsx")));
 				workbook.write(outFile);
@@ -106,6 +108,12 @@ public class Application {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+		}
+	}
+
+	private void createOutputDirectoryIfNotExist(File file) {
+		if(!(new File(file.getParent() + "/output/").exists())) {
+			new File(file.getParent() + "/output/").mkdir();
 		}
 	}
 
@@ -135,7 +143,7 @@ public class Application {
 		factory.setProxy(proxy);
 
 		RestTemplate restTemplate = new RestTemplate();
-//		restTemplate.setRequestFactory(factory);
+		restTemplate.setRequestFactory(factory); //proxy Nokia!
 		return restTemplate;
 	}
 
