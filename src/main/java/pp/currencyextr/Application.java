@@ -143,7 +143,7 @@ public class Application {
 		factory.setProxy(proxy);
 
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.setRequestFactory(factory); //proxy Nokia!
+		restTemplate.setRequestFactory(factory);
 		return restTemplate;
 	}
 
